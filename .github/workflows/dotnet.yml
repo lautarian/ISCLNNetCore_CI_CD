@@ -13,7 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    permissions: # <--- ¡AÑADE ESTO!
+      contents: write # Esto le da permiso al GITHUB_TOKEN para escribir en el repositorio
+    
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
