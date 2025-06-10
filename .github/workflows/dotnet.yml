@@ -27,13 +27,28 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
+    # =========================================================================
+    # ¡¡¡NUEVO PASO CLAVE para preparar el contenido de wwwroot para el despliegue!!!
+    # =========================================================================
+    - name: Publish web application for static content
+      # Ajusta 'ISCLNNetCore/ISCLNNetCore.csproj' a la ruta exacta de tu archivo .csproj de la aplicación web.
+      # Este comando compila y publica tu app, y pone el contenido de wwwroot en una carpeta '_site/wwwroot'
+      # en el runner, desde donde JamesIves la tomará.
+      run: dotnet publish ISCLNNetCore/ISCLNNetCore.csproj --configuration Release --output ${{ github.workspace }}/_site/build_output
+
     - name: Deploy to GitHub Pages
-      # You may pin to the exact commit or the version.
-      # uses: JamesIves/github-pages-deploy-action@5dc1d5a192aeb5ab5b7d5a77b7d36aea4a7f5c92
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
-        branch: Release # <--- Asegúrate que esto coincida con la rama de despliegue de tu GitHub Pages
-        folder: docs    # <--- Asegúrate que esta carpeta contenga tu contenido estático para Pages
+        branch: Release # <--- MANTENER 'Release', ya que GitHub Pages está configurado para esta rama.
+        # =====================================================================
+        # ¡¡¡AJUSTE CRÍTICO AQUÍ: Ruta a la carpeta de despliegue!!!
+        # =====================================================================
+        # Ahora, 'folder' debe apuntar a la carpeta 'wwwroot' dentro de la salida de 'dotnet publish'.
+        # 'build_output' es la carpeta de destino que definimos arriba con '--output'.
+        folder: ${{ github.workspace }}/_site/build_output/wwwroot # <--- ¡Esta es la ruta correcta!
+        # Si tu proyecto ASP.NET Core tiene el index.html y assets directamente en la raíz de la salida publish
+        # (menos común), podría ser ${{ github.workspace }}/_site/build_output
+        # Pero con la estructura de wwwroot, esta es la más probable.
 
   # =========================================================================
   # Jobs de notificación de Discord (Integrados de ci_discord.yml)
