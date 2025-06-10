@@ -1,5 +1,4 @@
 # This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET
 
@@ -10,10 +9,9 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-
+  build-and-test: # Job principal para construir y probar .NET
     runs-on: ubuntu-latest
-    permissions: # <--- ¡AÑADE ESTO!
+    permissions:
       contents: write # Esto le da permiso al GITHUB_TOKEN para escribir en el repositorio
     
     steps:
@@ -34,6 +32,42 @@ jobs:
       # uses: JamesIves/github-pages-deploy-action@5dc1d5a192aeb5ab5b7d5a77b7d36aea4a7f5c92
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
-        branch: Release
-        # The folder in your repository that you want to deploy. If your build script compiles into a directory named build you would put it here. Folder paths cannot have a leading / or ./. If you wish to deploy the root directory you can place a . here.
-        folder: docs
+        branch: Release # <--- Asegúrate que esto coincida con la rama de despliegue de tu GitHub Pages
+        folder: docs    # <--- Asegúrate que esta carpeta contenga tu contenido estático para Pages
+
+  # =========================================================================
+  # Jobs de notificación de Discord (Integrados de ci_discord.yml)
+  # =========================================================================
+
+  notify-discord-success:
+    runs-on: ubuntu-latest
+    # Este job solo se ejecuta si el job 'build-and-test' tuvo éxito
+    if: ${{ success() }}
+    needs: [build-and-test] # Depende del job 'build-and-test'
+    steps:
+      - name: Notificar éxito a Discord
+        env:
+          # Asegúrate de haber configurado tu Discord Webhook como un secreto en GitHub
+          # Ve a Settings -> Secrets and variables -> Actions -> New repository secret
+          # Nombre del secreto: DISCORD_FEEDBACK
+          DISCORD_FEEDBACK: ${{ secrets.DISCORD_FEEDBACK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"content":"✅ *CI/CD EXITOSO* en `${{ github.repository }}` para el commit `${{ github.sha }}` por `${{ github.actor }}`. Desplegado en GitHub Pages."}' \
+            $DISCORD_FEEDBACK
+
+  notify-discord-failure:
+    runs-on: ubuntu-latest
+    # Este job solo se ejecuta si el job 'build-and-test' falló
+    if: ${{ failure() }}
+    needs: [build-and-test] # Depende del job 'build-and-test'
+    steps:
+      - name: Notificar error a Discord
+        env:
+          DISCORD_FEEDBACK: ${{ secrets.DISCORD_FEEDBACK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"content":"❌ *CI/CD FALLÓ* en `${{ github.repository }}` para el commit `${{ github.sha }}` por `${{ github.actor }}`. Revisa los logs en: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }' \
+            $DISCORD_FEEDBACK
