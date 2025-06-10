@@ -9,8 +9,8 @@ namespace ISCLNNetCore
     {
         public int Suma_Igual_A_1()
         {
-            int x = 1;
-            int z = 0;
+            int x = 0;
+            int z = 1;
 
             return x + z; 
         }
