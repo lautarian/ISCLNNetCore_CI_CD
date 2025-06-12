@@ -229,6 +229,15 @@ footer {
     .component-card {
         flex: 1 1 calc(50% - 25px); /* 2 columnas en móviles grandes */
     }
+
+    .header-content {
+        flex-direction: column; /* Apila la imagen y el texto verticalmente en móviles */
+        text-align: center; /* Centra el texto cuando está apilado */
+    }
+
+    header h1, header p {
+        text-align: center; /* Asegura que el texto del header se centre en pantallas pequeñas */
+    }
 }
 
 @media (max-width: 576px) {
