@@ -29,7 +29,7 @@ header {
     display: flex; /* Habilita el modelo Flexbox */
     align-items: center; /* Alinea los elementos (imagen y div de texto) verticalmente al centro */
     justify-content: center; /* Centra los elementos horizontalmente dentro del contenedor */
-    text-align: left; /* Alinea el texto a la izquierda dentro del div de texto */
+    text-align: center; /* Alinea el texto al centro dentro del div de texto */
     gap: 20px; /* Espacio entre la imagen y el texto */
     flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea en pantallas pequeñas */
 }
