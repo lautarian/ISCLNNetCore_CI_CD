@@ -1,40 +1,76 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <title> ANGELOFF_CI-CD-2025 </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANGELOFF|CI/CD|ISCLNNetCore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Proyecto ISCLNNetCore: CI/CD en Acción</h1>
+            <p>Integración y Entrega Continua con .NET, GitHub Actions y GitHub Pages</p>
+        </div>
+    </header>
 
-    <div class="row">
+    <main class="container">
+        <section class="status-section">
+            <h2 id="current-status">Estado Actual del Despliegue</h2>
+            <div class="status-indicator">
+                <span id="status-text" class="status-initial">Verificando...</span>
+                <div class="status-icon"></div>
+            </div>
+            <button id="updateStatusBtn" class="btn-primary">Actualizar Estado</button>
+        </section>
 
-        <img src="https://www.iamtimcorey.com/assets/images/courses/mc-csh-01_title.png"
-             width="550" height="250">
+        <section class="info-section">
+            <h2>Componentes del Entorno CI/CD</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <img src="https://kinsta.com/es/wp-content/uploads/sites/8/2018/05/qu%C3%A9-es-github-1.png" alt="GitHub Logo" class="component-logo">
+                    <h3>Repositorio de Código</h3>
+                    <p>Centraliza el control de versiones y la colaboración.</p>
+                    <a href="https://github.com/lautarian/ISCLNNetCore_CI_CD" target="_blank" class="btn-secondary">Ver Repo</a>
+                </div>
+                <div class="component-card">
+                    <img src="https://miro.medium.com/v2/resize:fit:2000/1*TQn3443bwk8Th99o3RdC3w.png" alt="GitHub Actions Logo" class="component-logo">
+                    <h3>Servidor de CI/CD</h3>
+                    <p>Automatiza la construcción, pruebas y despliegue.</p>
+                    <a href="https://github.com/lautarian/ISCLNNetCore_CI_CD/actions" target="_blank" class="btn-secondary">Ver Pipelines</a>
+                </div>
+                <div class="component-card">
+                    <img src="https://www.iamtimcorey.com/assets/images/courses/mc-csh-01_title.png" alt="C# Logo" class="component-logo">
+                    <h3>Aplicación .NET</h3>
+                    <p>El código fuente de la aplicación a integrar y entregar.</p>
+                    <a href="#" class="btn-secondary disabled">Ver Código (Local)</a>
+                </div>
+                <div class="component-card">
+                    <img src="https://automationpanda.com/wp-content/uploads/2021/03/screen-shot-2021-03-24-at-12.48.26-am.png" alt="GitHub Pages Logo" class="component-logo">
+                    <h3>Entorno de Entrega</h3>
+                    <p>Hosting estático para el despliegue continuo.</p>
+                    <a href="https://lautarian.github.io/ISCLNNetCore_CI_CD/" target="_blank" class="btn-secondary">Ver Despliegue</a>
+                </div>
+            </div>
+        </section>
 
-        <img src="https://kinsta.com/es/wp-content/uploads/sites/8/2018/05/qu%C3%A9-es-github-1.png"
-             width="550" height="250">
+        <section class="message-section">
+            <h2 id="preview-title">Preview en Vísperas de Romperse...</h2>
+            <p id="dynamic-message">
+                Este mensaje se actualizará con cada despliegue exitoso del pipeline.
+                ¡Observa cómo una falla en las pruebas detendrá este despliegue!
+            </p>
+        </section>
+    </main>
 
-        
-    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lautarian - Ingeniería de Software (UTN)</p>
+        </div>
+    </footer>
 
-    <div>
-        <h1>
-            || Preview en visperas de romperse DE PUBLICACION CON ICONO _ All rights reserved _lautarian_ // con rama CDCI-10 ||...
-        </h1>
-    </div>
-
-    <div class="row">
-
-        <img src="https://miro.medium.com/v2/resize:fit:2000/1*TQn3443bwk8Th99o3RdC3w.png"
-             width="550" height="250">
-
-        <img src="https://automationpanda.com/wp-content/uploads/2021/03/screen-shot-2021-03-24-at-12.48.26-am.png"
-             width="550" height="250">
-
-
-    </div>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
