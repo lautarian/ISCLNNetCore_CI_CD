@@ -21,14 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Actualizar estado al cargar la página
     updateDeploymentStatus();
 
-    // Evento para el botón de actualización (opcional)
-    if (updateBtn) {
-        updateBtn.addEventListener('click', () => {
-            alert('En un proyecto real, esto dispararía una consulta API para obtener el estado del último pipeline.');
-            updateDeploymentStatus(); // Vuelve a actualizar la UI
-        });
-    }
-
-    // Aquí podrías agregar más lógica si quieres mostrar dinámicamente el último commit, etc.
-    // Esto iría más allá del alcance de un index.html estático simple para GitHub Pages.
+     
 });
