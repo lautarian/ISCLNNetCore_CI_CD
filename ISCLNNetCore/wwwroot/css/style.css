@@ -25,6 +25,25 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.header-content { /* ESTILO NUEVO: Contenedor Flexbox para imagen y texto */
+    display: flex; /* Habilita el modelo Flexbox */
+    align-items: center; /* Alinea los elementos (imagen y div de texto) verticalmente al centro */
+    justify-content: center; /* Centra los elementos horizontalmente dentro del contenedor */
+    text-align: left; /* Alinea el texto a la izquierda dentro del div de texto */
+    gap: 20px; /* Espacio entre la imagen y el texto */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea en pantallas pequeñas */
+}
+
+.profile-img { /* ESTILO NUEVO: Para la imagen de perfil circular */
+    width: 100px; /* Ancho de la imagen */
+    height: 100px; /* Alto de la imagen (asegura que sea cuadrada para el círculo perfecto) */
+    border-radius: 50%; /* ¡Hace la imagen circular! */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse si no es cuadrada */
+    border: 3px solid #3498db; /* Un borde de color para destacarla */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Una pequeña sombra alrededor */
+    flex-shrink: 0; /* Evita que la imagen se encoja en pantallas pequeñas */
+}
+
     header h1 {
         margin-top: 0;
         font-size: 2.8em;
