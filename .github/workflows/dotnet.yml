@@ -69,7 +69,7 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d '{"content":"✅ *CI/CD EXITOSO* en `${{ github.repository }}` para el commit `${{ github.sha }}` por `${{ github.actor }}`. Desplegado en GitHub Pages."}' \
+            -d '{"content":"✅ *CI/CD EXITOSO* 😜 en `${{ github.repository }}` para el commit `${{ github.sha }}` por `${{ github.actor }}`. 🚀 🛩 Desplegado en GitHub Pages: ${{ env.DEPLOYMENT_URL }} "}' \
             $DISCORD_FEEDBACK
 
   notify-discord-failure:
@@ -84,5 +84,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d '{"content":"❌ *CI/CD FALLÓ* en `${{ github.repository }}` para el commit `${{ github.sha }}` por `${{ github.actor }}`. Revisa los logs en: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }' \
+            -d '{"content":"❌ *CI/CD FALLÓ* 😔 en `${{ github.repository }}` para el commit `${{ github.sha }}` por `${{ github.actor }}`. 🤓 Revisa los logs en: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }' \
             $DISCORD_FEEDBACK
