@@ -66,6 +66,7 @@ jobs:
           # Ve a Settings -> Secrets and variables -> Actions -> New repository secret
           # Nombre del secreto: DISCORD_FEEDBACK
           DISCORD_FEEDBACK: ${{ secrets.DISCORD_FEEDBACK }}
+          DEPLOYMENT_URL: "https://lautarian.github.io/ISCLNNetCore_CI_CD/"
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
